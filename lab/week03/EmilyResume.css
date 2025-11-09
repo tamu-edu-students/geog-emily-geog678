@@ -1,0 +1,16 @@
+body{
+  padding: 25px;
+}
+h1 {
+	color: maroon;
+	text-align: center;
+}
+
+h2, h3 {
+  color: navy;
+  text-align: left;
+}
+
+img {
+  text-align: center;
+}
