@@ -1,0 +1,91 @@
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+  
+    <title>Task 1: D3.js</title>
+	
+	 <script src="https://d3js.org/d3.v4.min.js"></script>
+	 
+	 <style>
+	  
+	 body {
+			font-family: sans-serif;
+		}
+		
+	 h1 {
+			text-align: center;
+			margin-bottom: 20px;
+		}
+		
+		.day-row {
+		    display: flex;
+			align-items: center;
+			margin-bottom: 6px;
+		}
+		
+		.label {
+		    width: 60px;
+			font-weight: bold;
+		}
+		
+		.bar {
+		    color: white;
+			text-align: right;
+			padding: 4px;
+			margin-left: 4px;
+		}
+		
+	</style>
+	
+  </head>
+  
+  <body>
+  
+   <h1>College Station Weekly Temperature Forecast</h1>
+   
+   <div id="chart"></div>
+   
+   <script>
+    var data = [
+	{day: "Sat", high: 82, low: 67 },
+	{day: "Sat", high: 81, low: 59 },
+	{day: "Sat", high: 81, low: 50 },
+	{day: "Sat", high: 70, low: 47 },
+	{day: "Sat", high: 77, low: 51 },
+	{day: "Sat", high: 78, low: 60 },
+	{day: "Sat", high: 79, low: 66 },
+	{day: "Sat", high: 80, low: 66 },
+];
+
+    var colorScale = d3.scaleLinear()
+	    .domain([40, 90])
+		.range(["steelblue", "maroon"]);
+		
+	var chart = d3.select("#chart");
+	
+	var rows = chart.selectAll(".day-row")
+	    .data(data)
+		.enter()
+		.append("div")
+		.attr("class", "day-row");
+
+	rows.append("div")
+        .attr("class", "label")
+        .text(d => d.day);
+		
+	rows.append("div")
+        .attr("class", "bar")
+        .style("background-color", d => colorScale(d.high))
+        .style("width", d => d.high + "px")
+        .text(d => d.high + "°F");
+		
+	rows.append("div")
+        .attr("class", "bar")
+        .style("background-color", d => colorScale(d.low))
+        .style("width", d => d.low + "px")
+        .text(d => d.low + "°F");
+	</script>
+  
+  </body>
+</html>
